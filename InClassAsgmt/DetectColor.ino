@@ -1,0 +1,53 @@
+const int analogInPin = 3;  // Analog input pin that the potentiometer is attached to
+//const int analogOutPin = 8; // Analog output pin that the LED is attached to
+
+int sensorValue = 0;        // value read from the pot
+int outputValue = 0;        // value output to the PWM (analog out)
+
+void setup() {
+  // initialize serial communications at 9600 bps:
+  Serial.begin(9600);
+}
+
+void loop() {
+  // read the analog in value:
+ int sensorValue = analogRead(3);
+  // map it to the range of the analog out:
+  outputValue = map(sensorValue, 0, 1023, 0, 255);
+  // change the analog out value:
+  //analogWrite(analogOutPin, outputValue);
+  if(sensorValue>=170 && sensorValue<=500){
+    Serial.println(sensorValue);
+    delay(100);
+    Serial.println("Blue = FAH");
+    delay(100);
+  }
+  else if (sensorValue>=140 && sensorValue<=160){
+    Serial.println(sensorValue);
+    delay(100);
+    Serial.println("Green = TEN");
+    delay(100);
+  }
+else if(sensorValue>=90 && sensorValue<=100){
+    Serial.println(sensorValue);
+    delay(100);
+    Serial.println("Yellow = Fon");
+    delay(100);
+}
+else{ (sensorValue);
+    Serial.println(sensorValue);
+    delay(200);
+    Serial.println("Calling KJUdom");
+    delay(200);
+
+}
+  // print the results to the Serial Monitor:
+  Serial.print("sensor = ");
+  Serial.print(sensorValue);
+  Serial.print("\t output = ");
+  Serial.println(outputValue);
+
+  // wait 2 milliseconds before the next loop for the analog-to-digital
+  // converter to settle after the last reading:
+  delay(2);
+}
